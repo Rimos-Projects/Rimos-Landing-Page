@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rimos Projects</title>
+<link rel="icon" href="https://i.imgur.com/k47Wq7o.png">
+
+<style>
+    :root {
+        --bg: #0f1115;
+        --card: #1a1d24;
+        --accent: #4da3ff;
+        --text: #e6e6e6;
+        --subtext: #9aa3b2;
+        --hover: #2a2f3a;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", system-ui, sans-serif;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+    }
+
+    header {
+        padding: 40px 20px;
+        text-align: center;
+        border-bottom: 1px solid #222;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        color: var(--subtext);
+        margin-top: 10px;
+        font-size: 1rem;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 40px 20px;
+    }
+
+    .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: var(--card);
+        padding: 20px;
+        border-radius: 16px;
+        transition: 0.25s ease;
+        cursor: pointer;
+        border: 1px solid #222;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        background: var(--hover);
+    }
+
+    .card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        color: var(--subtext);
+        font-size: 0.9rem;
+    }
+
+    .tag {
+        display: inline-block;
+        margin-top: 15px;
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(77,163,255,0.15);
+        color: var(--accent);
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        color: var(--subtext);
+        border-top: 1px solid #222;
+        margin-top: 40px;
+        font-size: 0.85rem;
+    }
+
+    .fade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.6s ease;
+    }
+
+    .fade.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Rimos Projects</h1>
+    <p>Desarrollos web modernos, minimalistas y funcionales</p>
+</header>
+
+<div class="container">
+    <div class="projects">
+
+        <div class="card fade" onclick="openProject('https://rimos-projects.github.io/ConvertidorUniversal/')">
+            <h2>Convertidor Universal</h2>
+            <p>Herramienta rápida para convertir unidades con interfaz limpia y moderna.</p>
+            <span class="tag">Utility</span>
+        </div>
+
+        <div class="card fade" onclick="openProject('https://rimos-projects.github.io/LUMEN-Study-Hub/')">
+            <h2>LUMEN Study Hub</h2>
+            <p>Plataforma de estudio con enfoque en productividad y organización.</p>
+            <span class="tag">Productividad</span>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2026 Rimos Projects
+</footer>
+
+<script>
+function openProject(url) {
+    window.open(url, "_blank");
+}
+
+// Animación al hacer scroll
+const faders = document.querySelectorAll('.fade');
+
+const appearOptions = {
+    threshold: 0.2
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+    });
+}, appearOptions);
+
+faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+});
+</script>
+
+</body>
+</html>
